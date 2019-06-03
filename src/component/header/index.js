@@ -10,10 +10,13 @@ export default class Header extends Component {
           <div className="item">首页</div>
           <div className="item">下载App</div>
           <div className="item">
-            <input placeholder="搜索" />
+            <input className="search" placeholder="搜索" />
+            <a>
+              <i className="iconfont icon-search"></i>
+            </a>
           </div>
           <div className="item">
-            <span>登录</span>
+            <span className="loginBtn">登录</span>
           </div>
         </div>
       </div>
