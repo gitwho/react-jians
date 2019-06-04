@@ -15,9 +15,48 @@
     align-items: center;
     .item{
       padding: 10px;
+      position: relative;
+      .slide-enter{
+        transition: all .3s ease-out;
+      }
+      .slide-enter-active{
+        width: 200px;
+      }
+      .slide-exit{
+        transition: all .3s ease-out;
+      }
+      .slide-exit-active{
+        width: 150px;
+      }
       .search{
         height: 30px;
-        width: 100px;
+        width: 150px;
+        border: none;
+        color: #666;
+        background-color: #EEEEEE;
+        border-radius: 30px;
+        padding-left: 15px;
+        padding-right: 30px;
+        &.focused{
+          width: 200px;
+        }
+      }
+      
+      a{
+        position: absolute;
+        right: 20px;
+        top: 14px;
+        .icon-search{
+          font-size: 24px;
+          border-radius: 50%;
+          color: #9F9F9F;
+        }
+        &.focused{
+          .icon-search{
+            color: #fff;
+            background: #777;
+          }
+        }
       }
       .loginBtn{
         
