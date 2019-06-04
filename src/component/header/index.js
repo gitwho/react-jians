@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+import "../../static/iconfont/iconfont.css";
 import './index.less'
 export default class Header extends Component {
   render() {
@@ -12,7 +13,7 @@ export default class Header extends Component {
           <div className="item">
             <input className="search" placeholder="搜索" />
             <a>
-              <i className="iconfont icon-search"></i>
+              <i className="search icon-search"></i>
             </a>
           </div>
           <div className="item">
