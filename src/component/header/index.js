@@ -50,6 +50,13 @@ export default class Header extends Component {
           <div className="item">
             <span className="loginBtn">登录</span>
           </div>
+          
+          <div className="item">
+            <span>注册</span>
+          </div>
+          <div className="item">
+            <span>写文章</span>
+          </div>
         </div>
       </div>
     )
