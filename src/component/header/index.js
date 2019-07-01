@@ -27,27 +27,29 @@ export default class Header extends Component {
     return (
       <div className="header">
         <div className="logo"></div>
-        <div className="itemBox">
-          <div className="item">首页</div>
-          <div className="item">下载App</div>
-
-          <div className="item">
-            <CSSTransition
-              in={this.state.focused}
-              timeout={300}
-              classNames="slide"
-            >
-              <input className={`search ${this.state.focused ? "focused":''}`} placeholder="搜索" 
-                onFocus={this.handleInputFocus}
-                onBlur={this.handleInputBlur}
-              />
-            </CSSTransition>
-            
-            <a className={this.state.focused ? "focused":''}>
-              <i className="iconfont icon-search"></i>
-            </a>
+        <div className="itemWrap">
+          <div className="itemBox">
+            <div className="item">首页</div>
+            <div className="item">下载App</div>
+            <div className="item">
+              <CSSTransition
+                in={this.state.focused}
+                timeout={300}
+                classNames="slide"
+              >
+                <input className={`search ${this.state.focused ? "focused":''}`} placeholder="搜索" 
+                  onFocus={this.handleInputFocus}
+                  onBlur={this.handleInputBlur}
+                />
+              </CSSTransition>
+              
+              <a className={this.state.focused ? "focused":''}>
+                <i className="iconfont icon-search"></i>
+              </a>
+            </div>  
           </div>
-          <div className="item">
+          <div className="itemBox">
+            <div className="item">
             <span className="loginBtn">登录</span>
           </div>
           
@@ -57,7 +59,12 @@ export default class Header extends Component {
           <div className="item">
             <span>写文章</span>
           </div>
+          </div>
         </div>
+        
+
+        
+        
       </div>
     )
   }

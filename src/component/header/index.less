@@ -3,65 +3,76 @@
   height: 56px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   .logo{
     width: 100px;
     height: 56px;
     background: url("../../static/image/logo.png") no-repeat;
     background-size: 100% 100%;
   }
-  .itemBox{
+  .itemWrap{
+    flex:1;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    .item{
-      padding: 10px;
-      position: relative;
-      
-      .search{
-        height: 30px;
-        width: 150px;
-        border: none;
-        color: #666;
-        background-color: #EEEEEE;
-        border-radius: 30px;
-        padding-left: 15px;
-        padding-right: 30px;
-        &.focused{
-          width: 200px;
-        }
-        &.slide-enter{
-          transition: all .3s ease-out;
-        }
-        &.slide-enter-active{
-          width: 200px;
-        }
-        &.slide-exit{
-          transition: all .3s ease-out;
-        }
-        &.slide-exit-active{
+    min-width: 900px;
+    .itemBox{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .item{
+        padding: 10px;
+        position: relative;
+        
+        .search{
+          height: 30px;
           width: 150px;
-        }
-      }
-      
-      a{
-        position: absolute;
-        right: 20px;
-        top: 14px;
-        .icon-search{
-          font-size: 24px;
-          border-radius: 50%;
-          color: #9F9F9F;
-        }
-        &.focused{
-          .icon-search{
-            color: #fff;
-            background: #777;
+          border: none;
+          color: #666;
+          background-color: #EEEEEE;
+          border-radius: 30px;
+          padding-left: 15px;
+          padding-right: 30px;
+          &.focused{
+            width: 200px;
+          }
+          &.slide-enter{
+            transition: all .3s ease-out;
+          }
+          &.slide-enter-active{
+            width: 200px;
+          }
+          &.slide-exit{
+            transition: all .3s ease-out;
+          }
+          &.slide-exit-active{
+            width: 150px;
           }
         }
-      }
-      .loginBtn{
         
+        a{
+          position: absolute;
+          right: 20px;
+          top: 14px;
+          .icon-search{
+            font-size: 24px;
+            border-radius: 50%;
+            color: #9F9F9F;
+          }
+          &.focused{
+            .icon-search{
+              color: #fff;
+              background: #777;
+            }
+          }
+        }
+        .loginBtn{
+          
+        }
       }
     }
   }
+  
 }
