@@ -1,31 +1,12 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {CSSTransition} from 'react-transition-group'
-
+import {connect} from 'react-redux'
 import "../../static/iconfont/iconfont.css";
 import './index.less'
-export default class Header extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      focused: false
-    };
-    this.handleInputFocus = this.handleInputFocus.bind(this);
-    this.handleInputBlur = this.handleInputBlur.bind(this);
-  }
-  handleInputFocus() {
-    this.setState({
-      focused: true
-    })
-  }
-  handleInputBlur() {
-    this.setState({
-      focused: false
-    })
-  }
 
-  render() {
-    return (
-      <div className="header">
+const Header = (props) => {
+  return (
+    <div className="header">
         <div className="logo"></div>
         <div className="itemWrap">
           <div className="itemBox">
@@ -33,17 +14,17 @@ export default class Header extends Component {
             <div className="item">下载App</div>
             <div className="item">
               <CSSTransition
-                in={this.state.focused}
+                in={props.focused}
                 timeout={300}
                 classNames="slide"
               >
-                <input className={`search ${this.state.focused ? "focused":''}`} placeholder="搜索" 
-                  onFocus={this.handleInputFocus}
-                  onBlur={this.handleInputBlur}
+                <input className={`search ${props.focused ? "focused":''}`} placeholder="搜索" 
+                  onFocus={props.handleInputFocus}
+                  onBlur={props.handleInputBlur}
                 />
               </CSSTransition>
               
-              <a className={this.state.focused ? "focused":''}>
+              <a className={props.focused ? "focused":''}>
                 <i className="iconfont icon-search"></i>
               </a>
             </div>  
@@ -61,11 +42,30 @@ export default class Header extends Component {
           </div>
           </div>
         </div>
-        
-
-        
-        
       </div>
-    )
+  )
+}
+
+
+const mapStateToProps = (state) => {
+  return {
+    focused: state.focused
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleInputFocus() {
+      const action = {
+        type: 'focus',
+      };
+      dispatch(action)
+    },
+    handleInputBlur() {
+      const action = {
+        type: 'blur',
+      };
+      dispatch(action)
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -6,12 +6,18 @@ import store from './store'
 class App extends Component {
   render() {
     return (
-      <Fragment>
-        <Header />
-        
-      </Fragment>
+      <Provider store={store}>
+        <Fragment>
+          <Header />
+          
+        </Fragment>
+      </Provider>
+      
     )
   };
+
+  
+
 }
 
 export default App;
