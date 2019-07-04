@@ -3,7 +3,11 @@ import {CSSTransition} from 'react-transition-group'
 import {connect} from 'react-redux'
 import "../../static/iconfont/iconfont.css";
 import './index.less'
+import {actionCreators} from './store'
 
+import SearchBox from '../SearchBox'
+
+// 无状态组件
 const Header = (props) => {
   return (
     <div className="header">
@@ -23,10 +27,13 @@ const Header = (props) => {
                   onBlur={props.handleInputBlur}
                 />
               </CSSTransition>
-              
+              {/* 搜索图标 */}
               <a className={props.focused ? "focused":''}>
                 <i className="iconfont icon-search"></i>
               </a>
+
+              {/* 搜索弹框 */}
+              <SearchBox></SearchBox>
             </div>  
           </div>
           <div className="itemBox">
@@ -49,21 +56,21 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    focused: state.focused
+    // focused: state.header.focused
+    // focused: state.header.get('focused')
+
+    // focused: state.get('header').get('focused')
+    focused: state.getIn(['header', 'focused'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     handleInputFocus() {
-      const action = {
-        type: 'focus',
-      };
+      const action = actionCreators.searchFocus();
       dispatch(action)
     },
     handleInputBlur() {
-      const action = {
-        type: 'blur',
-      };
+      const action = actionCreators.searchBlur();
       dispatch(action)
     }
   }
