@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './index.less'
+import './index.less'
 
 export default class SearchBox extends Component {
   render () {
@@ -12,6 +13,12 @@ export default class SearchBox extends Component {
         <div className="searchContent">
           <ul className="keyLists">
             <li className="s_key">区块链</li>
+          </ul>
+        </div>
+        <div className="searchHistory">
+          <ul>
+            <li className="h_item">react</li>
+            <li className="h_item">vue</li>
           </ul>
         </div>
       </div>

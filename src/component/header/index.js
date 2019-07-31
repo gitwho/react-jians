@@ -33,7 +33,7 @@ const Header = (props) => {
               </a>
 
               {/* 搜索弹框 */}
-              <SearchBox></SearchBox>
+              <SearchBox ></SearchBox>
             </div>  
           </div>
           <div className="itemBox">
