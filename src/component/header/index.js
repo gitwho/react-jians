@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {CSSTransition} from 'react-transition-group'
 import {connect} from 'react-redux'
 import "../../static/iconfont/iconfont.css";
@@ -7,10 +7,22 @@ import {actionCreators} from './store'
 
 import SearchBox from '../SearchBox'
 
-// 无状态组件
-const Header = (props) => {
-  return (
-    <div className="header">
+
+
+class Header extends Component {
+  getListArea = (show) => {
+    if (show) {
+      return (
+        <SearchBox ></SearchBox>
+      )
+    }else{
+      return null;
+    }
+  }
+
+  render() {
+    return (
+      <div className="header">
         <div className="logo"></div>
         <div className="itemWrap">
           <div className="itemBox">
@@ -18,22 +30,22 @@ const Header = (props) => {
             <div className="item">下载App</div>
             <div className="item">
               <CSSTransition
-                in={props.focused}
+                in={this.props.focused}
                 timeout={300}
                 classNames="slide"
               >
-                <input className={`search ${props.focused ? "focused":''}`} placeholder="搜索" 
-                  onFocus={props.handleInputFocus}
-                  onBlur={props.handleInputBlur}
+                <input className={`search ${this.props.focused ? "focused":''}`} placeholder="搜索" 
+                  onFocus={this.props.handleInputFocus}
+                  onBlur={this.props.handleInputBlur}
                 />
               </CSSTransition>
               {/* 搜索图标 */}
-              <a className={props.focused ? "focused":''}>
+              <a className={this.props.focused ? "focused":''}>
                 <i className="iconfont icon-search"></i>
               </a>
 
               {/* 搜索弹框 */}
-              <SearchBox ></SearchBox>
+              {this.getListArea(this.props.focused)}
             </div>  
           </div>
           <div className="itemBox">
@@ -50,16 +62,26 @@ const Header = (props) => {
           </div>
         </div>
       </div>
-  )
+    )
+  }
 }
+
+// // 无状态组件
+// const Header = (props) => {
+//   return (
+    
+//   )
+// }
 
 
 const mapStateToProps = (state) => {
   return {
+    // 常规js对象
     // focused: state.header.focused
+    // state.header 是 immutable 对象的get方法
     // focused: state.header.get('focused')
-
-    // focused: state.get('header').get('focused')
+    // state和state.header 是  immutable 对象
+    // focused: state.get('header').get('focused')或者如下
     focused: state.getIn(['header', 'focused'])
   }
 }

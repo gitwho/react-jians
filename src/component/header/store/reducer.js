@@ -2,9 +2,10 @@ import * as actionTypes from './actionTypes'
 import {fromJS} from 'immutable';
 // immutable 不可变更的对象
 
-// js对象转换成immutable对象
+//fromJS js对象转换成immutable对象
 const defaultState = fromJS({
-  focused: false
+  focused: false,
+  list: []
 });
 
 export default (state = defaultState, action) => {
