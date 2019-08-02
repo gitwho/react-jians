@@ -10,10 +10,11 @@ import SearchBox from '../SearchBox'
 
 
 class Header extends Component {
-  getListArea = (show) => {
-    if (show) {
+  getListArea = () => {
+    const {focused, list} = this.props;
+    if (focused) {
       return (
-        <SearchBox ></SearchBox>
+        <SearchBox list={list}></SearchBox>
       )
     }else{
       return null;
@@ -21,6 +22,7 @@ class Header extends Component {
   }
 
   render() {
+    const {focused,  handleInputFocus, handleInputBlur} = this.props;
     return (
       <div className="header">
         <div className="logo"></div>
@@ -30,22 +32,22 @@ class Header extends Component {
             <div className="item">下载App</div>
             <div className="item">
               <CSSTransition
-                in={this.props.focused}
+                in={focused}
                 timeout={300}
                 classNames="slide"
               >
-                <input className={`search ${this.props.focused ? "focused":''}`} placeholder="搜索" 
-                  onFocus={this.props.handleInputFocus}
-                  onBlur={this.props.handleInputBlur}
+                <input className={`search ${focused ? "focused":''}`} placeholder="搜索" 
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
                 />
               </CSSTransition>
               {/* 搜索图标 */}
-              <a className={this.props.focused ? "focused":''}>
+              <a className={focused ? "focused":''}>
                 <i className="iconfont icon-search"></i>
               </a>
 
               {/* 搜索弹框 */}
-              {this.getListArea(this.props.focused)}
+              {this.getListArea()}
             </div>  
           </div>
           <div className="itemBox">
@@ -82,14 +84,16 @@ const mapStateToProps = (state) => {
     // focused: state.header.get('focused')
     // state和state.header 是  immutable 对象
     // focused: state.get('header').get('focused')或者如下
-    focused: state.getIn(['header', 'focused'])
+    focused: state.getIn(['header', 'focused']),
+    list: state.getIn(['header', 'list'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     handleInputFocus() {
       const action = actionCreators.searchFocus();
-      dispatch(action)
+      dispatch(action);
+      dispatch(actionCreators.getList());
     },
     handleInputBlur() {
       const action = actionCreators.searchBlur();

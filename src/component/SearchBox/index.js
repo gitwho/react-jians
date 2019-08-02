@@ -12,7 +12,13 @@ export default class SearchBox extends Component {
         </div>
         <div className="searchContent">
           <ul className="keyLists">
-            <li className="s_key">区块链</li>
+            {
+              this.props.list.map(item => {
+                return (
+                  <li className='s_key' key={item}>{item}</li>
+                )
+              })
+            }
           </ul>
         </div>
         <div className="searchHistory">
