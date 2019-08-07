@@ -11,10 +11,17 @@ import SearchBox from '../SearchBox'
 
 class Header extends Component {
   getListArea = () => {
-    const {focused, list} = this.props;
+    const {focused, list, page} = this.props;
+    let curList = [];
+    const jsList = list.toJS();
+    for (let i = (page-1)*10; i < page*10; i++) {
+      curList.push(jsList[i]);
+      
+    }
+
     if (focused) {
       return (
-        <SearchBox list={list}></SearchBox>
+        <SearchBox list={curList}></SearchBox>
       )
     }else{
       return null;
@@ -85,7 +92,8 @@ const mapStateToProps = (state) => {
     // state和state.header 是  immutable 对象
     // focused: state.get('header').get('focused')或者如下
     focused: state.getIn(['header', 'focused']),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
