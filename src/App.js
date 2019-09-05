@@ -9,13 +9,13 @@ class App extends Component {
       <Provider store={store}>
         <Fragment>
           <Header />
-          
+
         </Fragment>
       </Provider>
       
     )
   };
-
+  
   
 
 }
