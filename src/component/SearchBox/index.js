@@ -4,8 +4,9 @@ import './index.less'
 
 export default class SearchBox extends Component {
   render () {
+    const {handleMouseEnter} = this.props;
     return (
-      <div className="searchBox">
+      <div className="searchBox"  onMouseEnter={handleMouseEnter}>
         <div className="searchTitle">
           <span>热门搜索</span>
           <span>换一换</span>
@@ -13,9 +14,10 @@ export default class SearchBox extends Component {
         <div className="searchContent">
           <ul className="keyLists">
             {
-              this.props.list.map(item => {
+              this.props.list.map((item,index) => {
                 return (
-                  <li className='s_key' key={item}>{item}</li>
+                  <li className='s_key' key={index}>{item}</li>
+                  // <li className='s_key' key={index}>123</li>
                 )
               })
             }

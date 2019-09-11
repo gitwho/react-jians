@@ -10,18 +10,21 @@ import SearchBox from '../SearchBox'
 
 
 class Header extends Component {
+  
   getListArea = () => {
-    const {focused, list, page} = this.props;
+    const {focused, mouseIn, list, page, handleMouseEnter} = this.props;
+    console.log(this.props);
     let curList = [];
     const jsList = list.toJS();
     for (let i = (page-1)*10; i < page*10; i++) {
       curList.push(jsList[i]);
-      
     }
 
-    if (focused) {
+    if (focused || mouseIn) {
+      // console.log(focused, mouseIn);
       return (
-        <SearchBox list={curList}></SearchBox>
+        <SearchBox list={curList} handleMouseEnter={handleMouseEnter}>
+        </SearchBox>
       )
     }else{
       return null;
@@ -29,7 +32,7 @@ class Header extends Component {
   }
 
   render() {
-    const {focused,  handleInputFocus, handleInputBlur} = this.props;
+    const {focused,  handleInputFocus, handleInputBlur, handleMouseEnter} = this.props;
     return (
       <div className="header">
         <div className="logo"></div>
@@ -43,6 +46,7 @@ class Header extends Component {
                 timeout={300}
                 classNames="slide"
               >
+                {/* 搜索框 */}
                 <input className={`search ${focused ? "focused":''}`} placeholder="搜索" 
                   onFocus={handleInputFocus}
                   onBlur={handleInputBlur}
@@ -92,6 +96,7 @@ const mapStateToProps = (state) => {
     // state和state.header 是  immutable 对象
     // focused: state.get('header').get('focused')或者如下
     focused: state.getIn(['header', 'focused']),
+    mouseIn: state.getIn(['header', 'mouseIn']),
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page'])
   }
@@ -105,6 +110,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleInputBlur() {
       const action = actionCreators.searchBlur();
+      dispatch(action)
+    },
+    handleMouseEnter() {
+      console.log('xw');
+      const action = actionCreators.mouseEnter();
       dispatch(action)
     }
   }

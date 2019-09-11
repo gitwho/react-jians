@@ -5,6 +5,7 @@ import {fromJS} from 'immutable';
 //fromJS js对象转换成immutable对象
 const defaultState = fromJS({
   focused: false,
+  mouseIn: false,
   list: [],
   page: 1,
   totalPage: 1
@@ -19,6 +20,7 @@ export default (state = defaultState, action) => {
     case actionTypes.CHANGE_LIST: 
       return state.set('list', action.data)
       .set('totalPage', action.totalPage);
+    case actionTypes.MOUSE_ENTER: return state.set('mouseIn', true);
     default: return state;
   }
 }
