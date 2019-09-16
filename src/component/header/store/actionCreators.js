@@ -31,3 +31,11 @@ export const getList = () => {
 export const mouseEnter= () => ({
   type: actionTypes.MOUSE_ENTER
 })
+
+export const mouseOut = () => ({
+  type: actionTypes.MOUSE_OUT
+})
+
+export const changeSearch = () => ({
+  type: actionTypes.CHANGE_SEARCH
+})

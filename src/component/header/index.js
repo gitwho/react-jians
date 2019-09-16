@@ -12,18 +12,18 @@ import SearchBox from '../SearchBox'
 class Header extends Component {
   
   getListArea = () => {
-    const {focused, mouseIn, list, page, handleMouseEnter} = this.props;
-    console.log(this.props);
+    const {focused, mouseIn, list, page, handleMouseEnter, handleMouseOut} = this.props;
+    // console.log(this.props);
     let curList = [];
     const jsList = list.toJS();
     for (let i = (page-1)*10; i < page*10; i++) {
       curList.push(jsList[i]);
     }
-
+    console.log(focused, mouseIn);
     if (focused || mouseIn) {
       // console.log(focused, mouseIn);
       return (
-        <SearchBox list={curList} handleMouseEnter={handleMouseEnter}>
+        <SearchBox list={curList} handleMouseEnter={handleMouseEnter} handleMouseOut={handleMouseOut}>
         </SearchBox>
       )
     }else{
@@ -113,9 +113,17 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action)
     },
     handleMouseEnter() {
-      console.log('xw');
+      console.log('enter');
       const action = actionCreators.mouseEnter();
       dispatch(action)
+    },
+    handleMouseOut() {
+      console.log('out');
+      const action = actionCreators.mouseOut();
+      dispatch(action);
+    },
+    handleChangeSearch() {
+      console.log('change');
     }
   }
 }

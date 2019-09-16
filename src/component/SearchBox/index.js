@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import './index.less'
 import './index.less'
+import { actionCreators } from '../header/store';
 
 export default class SearchBox extends Component {
   render () {
-    const {handleMouseEnter} = this.props;
+    const {handleMouseEnter, handleMouseOut, handleChangeSearch} = this.props;
     return (
-      <div className="searchBox"  onMouseEnter={handleMouseEnter}>
+      <div className="searchBox"  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOut}>
         <div className="searchTitle">
           <span>热门搜索</span>
-          <span >换一换</span>
+          <span onClick={handleChangeSearch}>换一换</span>
         </div>
         <div className="searchContent">
           <ul className="keyLists">
@@ -33,3 +35,19 @@ export default class SearchBox extends Component {
     )
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return state
+// }
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     handleChangeSearch() {
+//       console.log('searchlist');
+//       const action = actionCreators.changeSearch();
+//       dispatch(action)
+//     }
+//   }
+// }
+
+//  connect(mapStateToProps, mapDispatchToProps)(SearchBox)
+

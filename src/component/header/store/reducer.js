@@ -21,6 +21,9 @@ export default (state = defaultState, action) => {
       return state.set('list', action.data)
       .set('totalPage', action.totalPage);
     case actionTypes.MOUSE_ENTER: return state.set('mouseIn', true);
+    case actionTypes.MOUSE_OUT: return state.set('mouseIn', false);
+    case actionTypes.CHANGE_SEARCH: return state.set('page', 2);
+
     default: return state;
   }
 }
