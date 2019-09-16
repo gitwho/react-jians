@@ -9,7 +9,7 @@ export default class SearchBox extends Component {
       <div className="searchBox"  onMouseEnter={handleMouseEnter}>
         <div className="searchTitle">
           <span>热门搜索</span>
-          <span>换一换</span>
+          <span >换一换</span>
         </div>
         <div className="searchContent">
           <ul className="keyLists">
