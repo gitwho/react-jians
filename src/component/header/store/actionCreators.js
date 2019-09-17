@@ -36,6 +36,7 @@ export const mouseOut = () => ({
   type: actionTypes.MOUSE_OUT
 })
 
-export const changeSearch = () => ({
-  type: actionTypes.CHANGE_SEARCH
+export const changeSearch = (page) => ({
+  type: actionTypes.CHANGE_SEARCH,
+  data: page
 })

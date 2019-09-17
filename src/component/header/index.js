@@ -12,18 +12,24 @@ import SearchBox from '../SearchBox'
 class Header extends Component {
   
   getListArea = () => {
-    const {focused, mouseIn, list, page, handleMouseEnter, handleMouseOut} = this.props;
+    const {focused, mouseIn, list, page, totalPage, handleMouseEnter, handleMouseOut, handleChangeSearch} = this.props;
     // console.log(this.props);
     let curList = [];
     const jsList = list.toJS();
     for (let i = (page-1)*10; i < page*10; i++) {
       curList.push(jsList[i]);
     }
-    console.log(focused, mouseIn);
+    // console.log(focused, mouseIn);
     if (focused || mouseIn) {
       // console.log(focused, mouseIn);
       return (
-        <SearchBox list={curList} handleMouseEnter={handleMouseEnter} handleMouseOut={handleMouseOut}>
+        <SearchBox ref={(r) => this.searchBox = r}
+          list={curList} 
+          page={page}
+          totalPage={totalPage}
+          handleMouseEnter={handleMouseEnter} 
+          handleMouseOut={handleMouseOut} 
+          handleChangeSearch={()=>{return handleChangeSearch(page, totalPage, this.searchBox)}}>
         </SearchBox>
       )
     }else{
@@ -98,7 +104,8 @@ const mapStateToProps = (state) => {
     focused: state.getIn(['header', 'focused']),
     mouseIn: state.getIn(['header', 'mouseIn']),
     list: state.getIn(['header', 'list']),
-    page: state.getIn(['header', 'page'])
+    page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -122,8 +129,29 @@ const mapDispatchToProps = (dispatch) => {
       const action = actionCreators.mouseOut();
       dispatch(action);
     },
-    handleChangeSearch() {
-      console.log('change');
+    handleChangeSearch(page, totalPage, searchBox) {
+      let spin = searchBox.spinIcon;
+
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig,'');
+      if(originAngle){
+        originAngle = parseInt(originAngle, 10);
+
+      }else {
+        originAngle = 0;
+      }
+      spin.style.transform = 'rotate('+ (originAngle+360) +'deg)';
+
+      // console.log(originAngle)
+
+      // console.log('change');
+      let action;
+      // console.log(page, totalPage);
+      if(page < totalPage){
+        action = actionCreators.changeSearch(page+1);
+      }else{
+        action = actionCreators.changeSearch(1);
+      }
+      dispatch(action);
     }
   }
 }

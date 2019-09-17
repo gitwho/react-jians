@@ -1,7 +1,6 @@
 .searchBox{
   position: absolute;
   width: 250px;
-  height: 200px;
   border: 1px solid #ddd;
   top: 45px;
   box-sizing: border-box;
@@ -12,13 +11,21 @@
     align-items: center;
     font-size: 14px;
     margin: 20px 20px 0;
-    span{
-
+    .change{
+      cursor: pointer;
+    }
+    i.iconfont{
+      color: #999;
+      display: block;
+      float: left;
+      transition: all .5s ease-in;
+      
+      transform-origin: center center; 
     }
   }
   .searchContent{
     margin-top: 10px;
-    height: 100px;
+    // height: 100px;
     margin: 0 20px;
     .keyLists{
       .s_key{

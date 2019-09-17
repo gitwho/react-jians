@@ -22,7 +22,7 @@ export default (state = defaultState, action) => {
       .set('totalPage', action.totalPage);
     case actionTypes.MOUSE_ENTER: return state.set('mouseIn', true);
     case actionTypes.MOUSE_OUT: return state.set('mouseIn', false);
-    case actionTypes.CHANGE_SEARCH: return state.set('page', 2);
+    case actionTypes.CHANGE_SEARCH: return state.set('page', action.data);
 
     default: return state;
   }

@@ -10,17 +10,23 @@ export default class SearchBox extends Component {
     return (
       <div className="searchBox"  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOut}>
         <div className="searchTitle">
-          <span>热门搜索</span>
-          <span onClick={handleChangeSearch}>换一换</span>
+          <span>热门搜索</span>  
+          <span className="change" onClick={handleChangeSearch}>
+            <i 
+              ref={r => this.spinIcon = r}
+            className="iconfont icon-spin"></i>
+            换一换
+          </span>
         </div>
         <div className="searchContent">
           <ul className="keyLists">
             {
               this.props.list.map((item,index) => {
-                return (
-                  <li className='s_key' key={index}>{item}</li>
-                  // <li className='s_key' key={index}>123</li>
-                )
+                if(item){
+                  return (
+                    <li className='s_key' key={index}>{item}</li>
+                  )
+                }
               })
             }
           </ul>
@@ -36,18 +42,4 @@ export default class SearchBox extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return state
-// }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     handleChangeSearch() {
-//       console.log('searchlist');
-//       const action = actionCreators.changeSearch();
-//       dispatch(action)
-//     }
-//   }
-// }
-
-//  connect(mapStateToProps, mapDispatchToProps)(SearchBox)
 
