@@ -38,7 +38,7 @@ class Header extends Component {
   }
 
   render() {
-    const {focused,  handleInputFocus, handleInputBlur, handleMouseEnter} = this.props;
+    const {focused,  handleInputFocus, handleInputBlur, handleMouseEnter, list} = this.props;
     return (
       <div className="header">
         <div className="logo"></div>
@@ -54,7 +54,7 @@ class Header extends Component {
               >
                 {/* 搜索框 */}
                 <input className={`search ${focused ? "focused":''}`} placeholder="搜索" 
-                  onFocus={handleInputFocus}
+                  onFocus={() => handleInputFocus(list)}
                   onBlur={handleInputBlur}
                 />
               </CSSTransition>
@@ -110,10 +110,13 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus() {
+    handleInputFocus(list) {
       const action = actionCreators.searchFocus();
+      console.log(list);
+      if(list.size<=0){
+        dispatch(actionCreators.getList());
+      }
       dispatch(action);
-      dispatch(actionCreators.getList());
     },
     handleInputBlur() {
       const action = actionCreators.searchBlur();

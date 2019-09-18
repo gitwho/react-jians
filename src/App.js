@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Provider} from 'react-redux'
+import {BrowerHistory, Route} from 'react-route-dom';
+
 import Header from './component/header'
 import store from './store'
 
