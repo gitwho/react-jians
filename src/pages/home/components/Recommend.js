@@ -1,11 +1,26 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 
 class Recommend extends Component {
     render() {
+        const {recommend} = this.props;
         return (
-            <div>Recommend</div>
+            <div>
+                {
+                    recommend.map((item) => {
+                        return (
+                            <div className='itemList' key={item.get('id')}>
+                                <img src={item.get('imgUrl')} />
+                            </div>
+                        )
+                    })
+                }
+            </div>
         )
     }
 }
 
-export default Recommend
+const mapState = (state) => ({
+    recommend: state.getIn(['home', 'recommendList'])
+})
+export default connect(mapState, null)(Recommend);

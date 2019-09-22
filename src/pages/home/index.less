@@ -38,8 +38,62 @@
 }
 .homeRight{
     float: left;
-    width: 240px;
+    width: 280px;
     margin-top: 30px;
-    background-color: #178;
+    margin-left: 40px;
+    .itemList{
+        width: 280px;
+        height: 50px;
+        margin-bottom: 6px;
+        img{
+            width: 100%;
+        }
+    }
+    .downWrap{
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px 22px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        .codeMin{
+            width: 60px;
+            height: 60px;
+            img{
+                width: 100%;
+            }
+        }
+        .downCont{
+            width: 143px;
+            font-size: 13px;
+            margin-left: 15px;
+            p{
+                font-weight: bold;
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+        }
+        .codeMaxWrap{
+            display: none;
+            position: absolute;
+            top: -230px;
+            z-index: 100;
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    &:hover{
+        .codeMaxWrap{
+            display: block;
+        }
+    }
 }
 
