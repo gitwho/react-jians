@@ -15,7 +15,9 @@ class Home extends Component {
                     <List ></List>
                 </div>
                 <div className='homeRight'>
+                    {/* recommend */}
                     <Recommend></Recommend>
+                    {/* 下载 */}
                     <div className='downWrap'>
                         <div className='codeMin'>
                             <img src="https://cdn2.jianshu.io/assets/web/download-index-side-qrcode-cb13fc9106a478795f8d10f9f632fccf.png" />
@@ -32,7 +34,8 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
-                    
+                    {/* 作者 */}
+                    <Writer></Writer>
                 </div>
             </div>
         )

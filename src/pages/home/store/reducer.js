@@ -24,6 +24,18 @@ const defaultState = fromJS({
             id: 2,
             imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png'
         }
+    ],
+    writer: [
+        {
+            id: 1,
+            name: '万三',
+            imgUrl: 'http://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp'
+        },
+        {
+            id: 2,
+            name: '李四',
+            imgUrl: 'http://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp'
+        }
     ]
 });
 
