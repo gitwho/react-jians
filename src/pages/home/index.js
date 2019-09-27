@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-
+import {connect} from 'react-redux';
 import List from './components/List'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
+
+import {actionCreators} from './store'
+
 
 import './index.less'
 
@@ -40,6 +43,20 @@ class Home extends Component {
             </div>
         )
     }
+
+    componentDidMount(){
+        
+
+        this.props.changeHomeData();
+    }
+    
 }
 
-export default Home
+const mapDispatch = (dispatch) => ({
+    changeHomeData() {
+        const action = actionCreators.getHomeInfo();
+        dispatch(action);
+    }
+})
+
+export default connect(null, mapDispatch)(Home);
