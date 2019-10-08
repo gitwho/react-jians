@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import {actionCreators} from '../store/actionCreators'
 class List extends Component {
     render() {
-        const {list} = this.props;
-        console.log(list)
+        const {list, getMoreList} = this.props;
         return (
             <div>
                 {
                     list.map((item) => {
-                        console.log(item)
-                        console.log(item.get('id'))
                         return (
                             <div className='listWrap' key={item.get('id')}>
                                 <div className='left'>
@@ -24,6 +21,9 @@ class List extends Component {
                         )
                     })
                 }
+                <div className='loadMore' onClick={getMoreList()}>
+                    阅读更多
+                </div>
             </div>
             // <div className='listWrap'>
             //     <div className='left'>
@@ -41,4 +41,11 @@ class List extends Component {
 const mapState = (state) => ({
     list: state.getIn(['home', 'articleList'])
 })
-export default connect(mapState, null)(List)
+
+const mapDispatch = (dispatch) => ({
+    getMoreList() {
+        const action = actionCreators.getMoreList();
+        dispatch(action);
+    }
+})
+export default connect(mapState, mapDispatch)(List)

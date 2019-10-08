@@ -16,6 +16,7 @@ class Home extends Component {
             <div className='homeWrap'>
                 <div className='homeLeft'>
                     <List ></List>
+                    
                 </div>
                 <div className='homeRight'>
                     {/* recommend */}
@@ -45,18 +46,25 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        
 
         this.props.changeHomeData();
     }
     
 }
 
+const mapState = (state) => ({
+
+});
+
 const mapDispatch = (dispatch) => ({
     changeHomeData() {
         const action = actionCreators.getHomeInfo();
         dispatch(action);
+    },
+    loadMore() {
+        console.log('more')
+        
     }
 })
 
-export default connect(null, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(Home);
