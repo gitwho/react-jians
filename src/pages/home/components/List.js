@@ -1,27 +1,31 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {actionCreators} from '../store/actionCreators'
-class List extends Component {
+import {actionCreators} from '../store'
+import {Link} from 'react-router-dom'
+
+class List extends PureComponent {
     render() {
-        const {list, getMoreList} = this.props;
+        const {list, getMoreList, page} = this.props;
         return (
             <div>
                 {
-                    list.map((item) => {
+                    list.map((item, index) => {
                         return (
-                            <div className='listWrap' key={item.get('id')}>
-                                <div className='left'>
-                                    <h3 className='title'>{item.get('title')}</h3>
-                                    <div className='content'>{item.get('desc')}</div>
+                            <Link key={index} to='/detail'>
+                                <div className='listWrap' key={index}>
+                                    <div className='left'>
+                                        <h3 className='title'>{item.get('title')}</h3>
+                                        <div className='content'>{item.get('desc')}</div>
+                                    </div>
+                                    <div className='right'>
+                                        <img src={item.get('imgUrl')} />
+                                    </div>
                                 </div>
-                                <div className='right'>
-                                    <img src={item.get('imgUrl')} />
-                                </div>
-                            </div>
+                            </Link>
                         )
                     })
                 }
-                <div className='loadMore' onClick={getMoreList()}>
+                <div className='loadMore' onClick={() => getMoreList(page)}>
                     阅读更多
                 </div>
             </div>
@@ -39,12 +43,13 @@ class List extends Component {
 }
 
 const mapState = (state) => ({
-    list: state.getIn(['home', 'articleList'])
+    list: state.getIn(['home', 'articleList']),
+    page: state.getIn(['home', 'articlePage'])
 })
 
 const mapDispatch = (dispatch) => ({
-    getMoreList() {
-        const action = actionCreators.getMoreList();
+    getMoreList(page) {
+        const action = actionCreators.getMoreList(page);
         dispatch(action);
     }
 })

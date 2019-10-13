@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './index.less'
-import './index.less'
+
 import { actionCreators } from '../header/store';
 
 export default class SearchBox extends Component {
