@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CSSTransition} from 'react-transition-group'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import "../../static/iconfont/iconfont.css";
 import './index.less'
 import {actionCreators} from './store'
@@ -44,7 +45,9 @@ class Header extends Component {
         <div className="logo"></div>
         <div className="itemWrap">
           <div className="itemBox">
-            <div className="item">首页</div>
+            <Link to='/'>
+              <div className="item">首页</div>
+            </Link>
             <div className="item">下载App</div>
             <div className="item">
               <CSSTransition

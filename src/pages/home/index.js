@@ -8,7 +8,7 @@ import {actionCreators} from './store'
 
 import './index.less'
 
-
+// PureComponent 与 immutable.js 配合
 class Home extends PureComponent {
     handleScrollTop() {
         window.scrollTo(0, 0);
