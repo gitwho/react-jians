@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {actionCreators} from './store'
 
+import  {withRouter} from 'react-router-dom'
+
 import './index.less'
 
 class Detail extends Component {
@@ -32,5 +34,7 @@ const mapDispatch = (dispatch) => ({
         const action = actionCreators.getDetail(id);
         dispatch(action);
     },
-})
-export default connect(mapState, mapDispatch)(Detail);
+});
+
+// withRouter 让Detail组获取router的参数和内容
+export default connect(mapState, mapDispatch)(withRouter(Detail));

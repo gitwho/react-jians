@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import "../../static/iconfont/iconfont.css";
 import './index.less'
 import {actionCreators} from './store'
+import {actionCreators as loginCreators} from '../../pages/login/store'
 
 import SearchBox from '../SearchBox'
 
@@ -39,7 +40,7 @@ class Header extends Component {
   }
 
   render() {
-    const {focused,  handleInputFocus, handleInputBlur, handleMouseEnter, list} = this.props;
+    const {focused,  handleInputFocus, handleInputBlur, handleMouseEnter, list, login, logout} = this.props;
     return (
       <div className="header">
         <div className="logo"></div>
@@ -62,7 +63,7 @@ class Header extends Component {
                 />
               </CSSTransition>
               {/* 搜索图标 */}
-              <a className={focused ? "focused":''}>
+              <a className={focused ? "focused icon":'icon'}>
                 <i className="iconfont icon-search"></i>
               </a>
 
@@ -71,16 +72,27 @@ class Header extends Component {
             </div>  
           </div>
           <div className="itemBox">
+            
             <div className="item">
-            <span className="loginBtn">登录</span>
-          </div>
-          
-          <div className="item">
-            <span>注册</span>
-          </div>
-          <div className="item">
-            <span>写文章</span>
-          </div>
+              {
+                login ? 
+                <span className="loginBtn" onClick={logout}>退出</span> 
+                : 
+                <Link to='/login'>
+                  <span className="loginBtn">登录</span>
+                </Link>
+                
+              }
+            </div>
+              
+            <div className="item">
+              <span>注册</span>
+            </div>
+            <Link to='/write'>
+              <div className="item">
+                <span>写文章</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -108,7 +120,8 @@ const mapStateToProps = (state) => {
     mouseIn: state.getIn(['header', 'mouseIn']),
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
-    totalPage: state.getIn(['header', 'totalPage'])
+    totalPage: state.getIn(['header', 'totalPage']),
+    login: state.getIn(['login', 'login'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -158,6 +171,9 @@ const mapDispatchToProps = (dispatch) => {
         action = actionCreators.changeSearch(1);
       }
       dispatch(action);
+    },
+    logout(){
+      dispatch(loginCreators.logout())
     }
   }
 }
